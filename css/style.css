@@ -230,23 +230,37 @@ a:hover {
    ======================== */
 .hero-section {
     position: relative;
-    min-height: 100vh;
+    height: 100vh; /* occupy full viewport height */
     display: flex;
     align-items: center;
-    padding: 80px 0 60px;
+    padding: 40px 0; /* reduce padding to keep content visible */
     overflow: hidden;
 }
 
-/* Prevent hero columns from wrapping so image stays side-by-side on small screens */
+/* Keep hero layout side-by-side while making elements scale to fit 100% width */
+.hero-section .container-fluid { height: 100%; padding-left: 1rem; padding-right: 1rem; }
+.hero-section .row { height: 100%; align-items: center; }
+.hero-section .col-6 { flex: 0 0 50%; max-width: 50%; }
+
 @media (max-width: 1199.98px) {
-    .hero-section .row {
-        flex-wrap: nowrap;
-        gap: 1rem;
-    }
-    .hero-section .col-6 {
-        flex: 0 0 50%;
-        max-width: 50%;
-    }
+    .hero-section { padding: 30px 0; }
+    .hero-content h1 { font-size: 2.4rem; }
+}
+
+@media (max-width: 991.98px) {
+    .hero-section { padding: 20px 0; }
+    .hero-content h1 { font-size: 2rem; }
+    .hero-content .lead { font-size: 0.95rem; }
+    .profile-photo { width: 40%; min-width: 140px; }
+    .hero-section .col-6 { flex-basis: 50%; max-width: 50%; }
+}
+
+@media (max-width: 575.98px) {
+    .hero-section { padding: 12px 0; }
+    .hero-content h1 { font-size: 1.4rem; }
+    .hero-content .lead { font-size: 0.9rem; max-width: 100%; }
+    .profile-photo { width: 38%; min-width: 120px; }
+    .btn { padding: 0.5rem 1rem; font-size: 0.9rem; }
 }
 
 .stars {
