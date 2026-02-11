@@ -237,6 +237,18 @@ a:hover {
     overflow: hidden;
 }
 
+/* Prevent hero columns from wrapping so image stays side-by-side on small screens */
+@media (max-width: 1199.98px) {
+    .hero-section .row {
+        flex-wrap: nowrap;
+        gap: 1rem;
+    }
+    .hero-section .col-6 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
+
 .stars {
     position: absolute;
     width: 2px;
@@ -809,6 +821,50 @@ a:hover {
     .blog-card,
     .project-card {
         margin-bottom: 1rem;
+    }
+}
+
+/* Mobile / Tablet: make collapsed navbar slide in from the right instead of dropping down */
+@media (max-width: 991.98px) {
+    .navbar-collapse {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 80%;
+        max-width: 340px;
+        height: 100%;
+        background: rgba(10, 10, 30, 0.98);
+        backdrop-filter: blur(6px);
+        transform: translateX(100%);
+        transition: transform 0.35s ease;
+        padding-top: 72px; /* leave room for navbar */
+        z-index: 1050;
+        overflow-y: auto;
+        box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+    }
+
+    .navbar-collapse.show {
+        transform: translateX(0);
+    }
+
+    .navbar .navbar-nav {
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 0.5rem 1.25rem 2rem 1.25rem;
+    }
+
+    .navbar .nav-link {
+        padding: 0.75rem 0;
+        font-size: 1.05rem;
+    }
+
+    .navbar-toggler {
+        z-index: 1060; /* keep toggler above the collapsing panel */
+    }
+
+    /* Bring home section closer to the top on smaller screens */
+    .hero-section {
+        padding-top: 8px;
     }
 }
 
